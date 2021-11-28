@@ -21,11 +21,10 @@
                     <a class="nav-link" href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" href="about.php">About</a>
                 </li>
-
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Terms of Use</a>
+                    <a class="nav-link" href="terms.php">Terms of Use</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Search Reviews</a>
