@@ -1,4 +1,5 @@
 <?php if (count(get_included_files()) == 1) die("Direct access to this file is not permitted."); ?>
+<?php session_start(); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +34,15 @@
             </ul>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Login via SSO</a>
+                    <?php 
+                        if (empty($_SESSION["username"])) {
+                            echo('<a class="nav-link" href="auth/login">Login via SSO</a>');
+                        }
+                        else {
+                            echo('<a class="nav-link" href="auth/logout">Logout</a>');
+                        }
+                    ?>
+                    
                 </li>
             </ul>
         </div>
