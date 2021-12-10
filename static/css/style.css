@@ -3,7 +3,7 @@ html, body {
     height: 100%;
 }
 
-#teaser-wrapper {
+#not-found-wrapper, #teaser-wrapper {
     display: flex;
     align-items: center;
     flex-direction: column;
