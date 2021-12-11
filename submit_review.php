@@ -5,7 +5,7 @@
 <?php
     if (!empty($_GET["reviewer_username"])) {
         // Temporary API
-        include_once("api/submitReview.php");
+        include_once("internal/submitReview.php");
         $res = submitReview(
             $_GET["course_unit"],
             $_GET["year"],
@@ -29,8 +29,8 @@
     }
     else if (empty($_GET["course_unit"]) && empty($_GET["year"])) {
         // Temporary APIs
-        include_once("api/getYears.php");
-        include_once("api/getCourseUnitCodes.php");
+        include_once("internal/getYears.php");
+        include_once("internal/getCourseUnitCodes.php");
         echo('
             <form action="" method="get">
                 <label for="course_unit">Course Unit:</label>
@@ -57,7 +57,7 @@
     }
     else {
         // Temporary API
-        include_once("api/getCourseUnit.php");
+        include_once("internal/getCourseUnit.php");
         $data = getCourseUnit($_GET["course_unit"], $_GET["year"])[1];
         if ($data) {
             $data = $data[0];
