@@ -29,7 +29,7 @@
                     <a class="nav-link" href="#">Search Reviews</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Submit Review</a>
+                    <a class="nav-link" href="submit_review">Submit Review</a>
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto">
