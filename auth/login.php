@@ -1,4 +1,6 @@
 <?php
+    include_once("../internal/handleNewUser.php");
+
     if (empty($_SERVER["HTTPS"])) {
         $DEVELOPER_URL = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     } 
@@ -21,6 +23,7 @@
     $_SESSION["authTime"] = Authenticator::getTimeAuthenticated();
     $_SESSION["username"] = Authenticator::getUsername();
     $_SESSION["fullName"] = Authenticator::getFullName();
+    handleNewUser();
     header("Location: $REDIRECT_URL");
     die();
 ?>
