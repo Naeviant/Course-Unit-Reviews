@@ -24,7 +24,7 @@
         );
         print_r($res);
         if ($res[1]) {
-            header("Location: view_review?id=$res[1]");
+            header("Location: thank_you?id=$res[1]");
         }
     }
     else if (empty($_GET["course_unit"]) && empty($_GET["year"])) {
