@@ -13,6 +13,16 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `CUR_Agreements`
+--
+
+CREATE TABLE `CUR_Agreements` (
+  `ReviewID` int NOT NULL,
+  `Username` varchar(9) COLLATE utf8_unicode_ci NOT NULL,
+  `Type` tinyint NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+
+--
 -- Table structure for table `CUR_CourseUnits`
 --
 
@@ -523,6 +533,13 @@ INSERT INTO `CUR_Teaches` (`Staff`, `Year`, `CourseUnit`) VALUES
 --
 
 --
+-- Indexes for table `CUR_Agreements`
+--
+ALTER TABLE `CUR_Agreements`
+  ADD PRIMARY KEY (`ReviewID`,`Username`),
+  ADD KEY `AgreementUsername` (`Username`);
+
+--
 -- Indexes for table `CUR_CourseUnits`
 --
 ALTER TABLE `CUR_CourseUnits`
@@ -582,6 +599,14 @@ ALTER TABLE `CUR_Staff`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `CUR_Agreements`
+--
+ALTER TABLE `CUR_Agreements`
+  ADD CONSTRAINT `AgreementReviewID` FOREIGN KEY (`ReviewID`) REFERENCES `CUR_Reviews` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `AgreementUsername` FOREIGN KEY (`Username`) REFERENCES `CUR_Reviewer` (`Username`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+COMMIT;
 
 --
 -- Constraints for table `CUR_CourseUnits`
