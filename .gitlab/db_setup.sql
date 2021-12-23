@@ -228,7 +228,8 @@ INSERT INTO `CUR_Prereqs` (`Year`, `PrereqOf`, `PrereqTo`) VALUES
 CREATE TABLE `CUR_Reviewer` (
   `Username` varchar(8) COLLATE utf8_unicode_ci NOT NULL,
   `FirstName` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `LastName` varchar(64) COLLATE utf8_unicode_ci NOT NULL
+  `LastName` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `Status` varchar(6) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
