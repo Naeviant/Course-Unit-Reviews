@@ -34,6 +34,15 @@
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto">
+                <?php
+                    if (!empty($_SESSION["username"])) {
+                        echo('
+                            <li class="nav-item">
+                                <a class="nav-link" href="my_reviews">My Reviews</a>
+                            </li>
+                        ');
+                    }
+                ?>
                 <li class="nav-item">
                     <?php 
                         if (empty($_SESSION["username"])) {
