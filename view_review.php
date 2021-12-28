@@ -63,9 +63,11 @@
 
 <?php
     if ($res["ExamPercentage"] > 0) {
-        echo("
-            <h3>Exam Rating: $res[ExamRating]</h3>
-        ");
+        echo("<h3>Exam Rating: ");
+        for ($i = 1; $i <= 5; $i++) {
+            echo($res["ExamRating"] >= $i ? '<span class="star-rating active"><i class="bi bi-star-fill"></i> </span>' : '<span class="star-rating"><i class="bi bi-star-fill"></i> </span>');
+        }
+        echo("</h3>");
         if (!empty($res["ExamNotes"])) {
             echo("<p>$res[ExamNotes]</p>");
         }
@@ -74,9 +76,11 @@
         }
     }
     if ($res["CourseworkPercentage"] > 0) {
-        echo("
-            <h3>Coursework Rating: $res[CourseworkRating]</h3>
-        ");
+        echo("<h3>Coursework Rating: ");
+        for ($i = 1; $i <= 5; $i++) {
+            echo($res["CourseworkRating"] >= $i ? '<span class="star-rating active"><i class="bi bi-star-fill"></i> </span>' : '<span class="star-rating"><i class="bi bi-star-fill"></i> </span>');
+        }
+        echo("</h3>");
         if (!empty($res["CourseworkNotes"])) {
             echo("<p>$res[CourseworkNotes]</p>");
         }
@@ -85,9 +89,11 @@
         }
     }
     if ($res["LectureHours"] > 0) {
-        echo("
-            <h3>Lectures Rating: $res[LecturesRating]</h3>
-        ");
+        echo("<h3>Lectures Rating: ");
+        for ($i = 1; $i <= 5; $i++) {
+            echo($res["LecturesRating"] >= $i ? '<span class="star-rating active"><i class="bi bi-star-fill"></i> </span>' : '<span class="star-rating"><i class="bi bi-star-fill"></i> </span>');
+        }
+        echo("</h3>");
         if (!empty($res["LecturesNotes"])) {
             echo("<p>$res[LecturesNotes]</p>");
         }
@@ -96,9 +102,11 @@
         }
     }
     if ($res["WorkshopHours"] > 0) {
-        echo("
-            <h3>Workshops Rating: $res[WorkshopsRating]</h3>
-        ");
+        echo("<h3>Workshops Rating: ");
+        for ($i = 1; $i <= 5; $i++) {
+            echo($res["WorkshopsRating"] >= $i ? '<span class="star-rating active"><i class="bi bi-star-fill"></i> </span>' : '<span class="star-rating"><i class="bi bi-star-fill"></i> </span>');
+        }
+        echo("</h3>");
         if (!empty($res["WorkshopsNotes"])) {
             echo("<p>$res[WorkshopsNotes]</p>");
         }
@@ -107,9 +115,11 @@
         }
     }
     if ($res["TutorialHours"] > 0) {
-        echo("
-            <h3>Tutorials Rating: $res[TutorialsRating]</h3>
-        ");
+        echo("<h3>Tutorials Rating: ");
+        for ($i = 1; $i <= 5; $i++) {
+            echo($res["TutorialsRating"] >= $i ? '<span class="star-rating active"><i class="bi bi-star-fill"></i> </span>' : '<span class="star-rating"><i class="bi bi-star-fill"></i> </span>');
+        }
+        echo("</h3>");
         if (!empty($res["TutorialsNotes"])) {
             echo("<p>$res[TutorialsNotes]</p>");
         }

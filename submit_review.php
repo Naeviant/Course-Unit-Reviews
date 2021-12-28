@@ -26,8 +26,8 @@
             isset($_GET["coursework_review"]) ? $_GET["coursework_review"] : "",
             isset($_GET["lecture_rating"]) ? $_GET["lecture_rating"] : 0,
             isset($_GET["lecture_review"]) ? $_GET["lecture_review"] : "",
-            isset($_GET["workshops_rating"]) ? $_GET["workshops_rating"] : 0,
-            isset($_GET["workshops_review"]) ? $_GET["workshops_review"] : "",
+            isset($_GET["workshop_rating"]) ? $_GET["workshop_rating"] : 0,
+            isset($_GET["workshop_review"]) ? $_GET["workshop_review"] : "",
             isset($_GET["tutorial_rating"]) ? $_GET["tutorial_rating"] : 0,
             isset($_GET["tutorial_review"]) ? $_GET["tutorial_review"] : "",
             isset($_GET["other_comments"]) ? $_GET["other_comments"] : ""
@@ -74,40 +74,95 @@
             echo('<form action="" method="get">');
             if ($data["ExamPercentage"] > 0) {
                 echo('
-                    <label for="exam_rating" class="form-label">Exam Rating:</label>
-                    <input type="range" class="form-range" name="exam_rating" step="1" min="1" max="5">
+                    <label>Exam Rating</label><br />
+                    <div>
+                        <input type="radio" id="exam-rating-1" name="exam_rating" value="1" />
+                        <label for="exam-rating-1" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                        <input type="radio" id="exam-rating-2" name="exam_rating" value="2" />
+                        <label for="exam-rating-2" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                        <input type="radio" id="exam-rating-3" name="exam_rating" value="3" checked />
+                        <label for="exam-rating-3" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                        <input type="radio" id="exam-rating-4" name="exam_rating" value="4" />
+                        <label for="exam-rating-4" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                        <input type="radio" id="exam-rating-5" name="exam_rating" value="5" />
+                        <label for="exam-rating-5" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                    </div>
                     <label for="exam_review" class="form-label">Exam Review:</label>
                     <textarea class="form-control" name="exam_review" rows="3"></textarea>
                 ');
             }
             if ($data["CourseworkPercentage"] > 0) {
                 echo('
-                    <label for="coursework_rating" class="form-label">Coursework Rating:</label>
-                    <input type="range" class="form-range" name="coursework_rating" step="1" min="1" max="5">
+                    <label>Coursework Rating</label><br />
+                    <div>
+                        <input type="radio" id="coursework-rating-1" name="coursework_rating" value="1" />
+                        <label for="coursework-rating-1" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                        <input type="radio" id="coursework-rating-2" name="coursework_rating" value="2" />
+                        <label for="coursework-rating-2" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                        <input type="radio" id="coursework-rating-3" name="coursework_rating" value="3" checked />
+                        <label for="coursework-rating-3" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                        <input type="radio" id="coursework-rating-4" name="coursework_rating" value="4" />
+                        <label for="coursework-rating-4" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                        <input type="radio" id="coursework-rating-5" name="coursework_rating" value="5" />
+                        <label for="coursework-rating-5" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                    </div>
                     <label for="coursework_review" class="form-label">Coursework Review:</label>
                     <textarea class="form-control" name="coursework_review" rows="3"></textarea>               
                 ');
             }
             if ($data["LectureHours"] > 0) {
                 echo('
-                    <label for="lecture_rating" class="form-label">Lecture Rating:</label>
-                    <input type="range" class="form-range" name="lecture_rating" step="1" min="1" max="5">
+                    <label>Lecture Rating</label><br />
+                    <div>
+                        <input type="radio" id="lecture-rating-1" name="lecture_rating" value="1" />
+                        <label for="lecture-rating-1" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                        <input type="radio" id="lecture-rating-2" name="lecture_rating" value="2" />
+                        <label for="lecture-rating-2" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                        <input type="radio" id="lecture-rating-3" name="lecture_rating" value="3" checked />
+                        <label for="lecture-rating-3" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                        <input type="radio" id="lecture-rating-4" name="lecture_rating" value="4" />
+                        <label for="lecture-rating-4" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                        <input type="radio" id="lecture-rating-5" name="lecture_rating" value="5" />
+                        <label for="lecture-rating-5" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                    </div>
                     <label for="lecture_review" class="form-label">Lecture Review:</label>
                     <textarea class="form-control" name="lecture_review" rows="3"></textarea>
                 ');
             }
             if ($data["WorkshopHours"] > 0) {
                 echo('
-                    <label for="workshops_rating" class="form-label">Workshops Rating:</label>
-                    <input type="range" class="form-range" name="workshops_rating" step="1" min="1" max="5">
-                    <label for="workshops_review" class="form-label">Workshops Review:</label>
-                    <textarea class="form-control" name="workshops_review" rows="3"></textarea>               
+                    <label>Workshop Rating</label><br />
+                    <div>
+                        <input type="radio" id="workshop-rating-1" name="workshop_rating" value="1" />
+                        <label for="workshop-rating-1" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                        <input type="radio" id="workshop-rating-2" name="workshop_rating" value="2" />
+                        <label for="workshop-rating-2" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                        <input type="radio" id="workshop-rating-3" name="workshop_rating" value="3" checked />
+                        <label for="workshop-rating-3" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                        <input type="radio" id="workshop-rating-4" name="workshop_rating" value="4" />
+                        <label for="workshop-rating-4" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                        <input type="radio" id="workshop-rating-5" name="workshop_rating" value="5" />
+                        <label for="workshop-rating-5" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                    </div>
+                    <label for="workshop_review" class="form-label">Workshops Review:</label>
+                    <textarea class="form-control" name="workshop_review" rows="3"></textarea>               
                 ');
             }
             if ($data["TutorialHours"] > 0) {
                 echo('
-                    <label for="tutorial_rating" class="form-label">Tutorial Rating:</label>
-                    <input type="range" class="form-range" name="tutorial_rating" step="1" min="1" max="5">
+                    <label>Tutorial Rating</label><br />
+                    <div>
+                        <input type="radio" id="tutorial-rating-1" name="tutorial_rating" value="1" />
+                        <label for="tutorial-rating-1" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                        <input type="radio" id="tutorial-rating-2" name="tutorial_rating" value="2" />
+                        <label for="tutorial-rating-2" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                        <input type="radio" id="tutorial-rating-3" name="tutorial_rating" value="3" checked />
+                        <label for="tutorial-rating-3" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                        <input type="radio" id="tutorial-rating-4" name="tutorial_rating" value="4" />
+                        <label for="tutorial-rating-4" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                        <input type="radio" id="tutorial-rating-5" name="tutorial_rating" value="5" />
+                        <label for="tutorial-rating-5" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                    </div>
                     <label for="tutorial_review" class="form-label">Tutorial Review:</label>
                     <textarea class="form-control" name="tutorial_review" rows="3"></textarea>
                 ');
@@ -127,5 +182,8 @@
         }
     }
 ?>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="static/js/star_rating.js"></script>
 
 <?php include_once("components/footer.php") ?>
