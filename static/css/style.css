@@ -3,13 +3,36 @@ html, body {
     height: 100%;
 }
 
-#center-wrapper, #teaser-wrapper {
+#center-wrapper {
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    height: calc(100% - 64px);
+    height: calc(100% - 56px);
+}
+
+#landing-background, #landing-overlay, #landing-content {
+    width: 100%;
+    height: calc(100% - 56px);
+    position: absolute;
+    bottom: 0;
+}
+
+#landing-background {
+    background-image: url("../img/landing-background.png");
+    background-size: cover;
+    background-position: center;
+}
+
+#landing-overlay {
+    background-color: #000;
+    opacity: 0.7;
+}
+
+#landing-content > div > * {
+    color: #FFF;
+    margin: 12px 0;
 }
 
 .star-rating {
