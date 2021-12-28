@@ -1,13 +1,23 @@
 <?php 
     session_start();
     include_once("internal/getReview.php");
+    include_once("internal/getReviewer.php");
+
+    $isAdmin = false;
+    if (isset($_SESSION["username"])) {
+        $res = getReviewer($_SESSION["username"])[1];
+        if ($res[0]["Status"] == "admin") {
+            $isAdmin = true;
+        }
+    }
+
     if (isset($_GET["id"])) {
         $res = getReview($_GET["id"])[1];
         if (empty($res) || $res[0]["Status"] == "rejected") {
             include_once("404.php");
             die();
         }
-        else if ($res[0]["Status"] != "approved") {
+        else if ($res[0]["Status"] != "approved" && !$isAdmin) {
             session_write_close();
             include_once("components/header.php");
             echo('
