@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include_once("../internal/handleNewUser.php");
 
     if (empty($_SERVER["HTTPS"])) {
@@ -12,7 +13,7 @@
         $REDIRECT_URL = "../home";
     }
     else { 
-        // not currently used
+        $REDIRECT_URL = "../" . $_SESSION["redirect"];
     }
 
     define("DEVELOPER_URL", $DEVELOPER_URL);

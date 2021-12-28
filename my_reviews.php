@@ -1,5 +1,5 @@
 <?php include_once("components/header.php") ?>
-<?php include_once("auth/isAuth.php") ?>
+<?php $_SESSION["redirect"] = "my_reviews"; include_once("auth/isAuth.php") ?>
 
 <?php 
     include_once("internal/getMyReviews.php");
