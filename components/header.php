@@ -24,9 +24,6 @@
                     <a class="nav-link" href="about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="terms">Terms of Use</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="search_reviews">Search Reviews</a>
                 </li>
                 <li class="nav-item">
