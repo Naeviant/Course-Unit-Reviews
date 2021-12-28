@@ -607,7 +607,6 @@ ALTER TABLE `CUR_Staff`
 ALTER TABLE `CUR_Agreements`
   ADD CONSTRAINT `AgreementReviewID` FOREIGN KEY (`ReviewID`) REFERENCES `CUR_Reviews` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `AgreementUsername` FOREIGN KEY (`Username`) REFERENCES `CUR_Reviewer` (`Username`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-COMMIT;
 
 --
 -- Constraints for table `CUR_CourseUnits`
