@@ -1,6 +1,16 @@
 <?php include_once("components/header.php") ?>
 <?php include_once("auth/isAuth.php") ?>
 
+<?php
+    include_once("internal/getReviewer.php");
+    $user = getReviewer($_SESSION["username"])[1];
+
+    if ($user[0]["Status"] == "banned") {
+        include_once("401.php");
+        die();
+    }
+?>
+
 <h1>Submit Course Unit Review</h1>
 <?php
     if (!empty($_GET["reviewer_username"])) {

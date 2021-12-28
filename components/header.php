@@ -1,5 +1,5 @@
 <?php if (count(get_included_files()) == 1) die("Direct access to this file is not permitted."); ?>
-<?php session_start(); ?>
+<?php if (session_status() == 1) session_start(); ?>
 
 <!DOCTYPE html>
 <html lang="en">
