@@ -66,6 +66,7 @@
     <div class="card">
         <div class="card-body">
             <h1 class="text-center">Review for <?php echo($res["CourseUnit"]) ?> in <?php echo($res["Year"]) ?></h1>
+            <h5 class="text-center">Date Submitted: <?php echo(date("jS F Y", strtotime($res["Timestamp"]))); ?></h5>
             <h5 class="text-center">Review Score: <?php echo($score); ?></h5>
         </div>
     </div>

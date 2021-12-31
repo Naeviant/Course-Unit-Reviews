@@ -79,6 +79,7 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th>Date Submitted</th>
                         <th>Course Unit</th>
                         <th>Year</th>
                         <th>Actions</th>
@@ -90,6 +91,7 @@
                             foreach ($res as $review) {
                                 echo("
                                     <tr>
+                                        <td>" . date("d/m/Y", strtotime($review["Timestamp"])) . "</td>
                                         <td>$review[CourseUnit]</td>
                                         <td>$review[Year]</td>
                                         <td>
@@ -105,7 +107,7 @@
                         }
                         else {
                             echo("
-                                <td colspan='3'><em>No reviews found.</em></td>
+                                <td colspan='4'><em>No reviews found.</em></td>
                             ");
                         }
                     ?>

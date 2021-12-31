@@ -66,6 +66,7 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th>Date Written</th>
                         <th>Course Unit</th>
                         <th>Year</th>
                         <th>Average Rating</th>
@@ -87,6 +88,7 @@
                                 }
                                 echo("
                                     <tr>
+                                        <td>" . date("d/m/Y", strtotime($review["Timestamp"])) . "</td>
                                         <td>$review[CourseUnit]</td>
                                         <td>$review[Year]</td>
                                         <td>" . $average_rating . "</td>
@@ -98,7 +100,7 @@
                         }
                         else {
                             echo("
-                                <td colspan='5'><em>No reviews found.</em></td>
+                                <td colspan='6'><em>No reviews found.</em></td>
                             ");
                         }
                     ?>
