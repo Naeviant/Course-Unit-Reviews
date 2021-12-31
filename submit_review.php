@@ -268,9 +268,6 @@
                     </div>
                 </div>
             ');
-            echo("  <input name='reviewer_username' value='$_SESSION[username]' style='display: none;'>");
-            echo("  <input name='course_unit' value='$_GET[course_unit]' style='display: none;'>");
-            echo("  <input name='year' value='$_GET[year]' style='display: none;'>");
             echo('
                 <div class="container">
                     <div class="card">
