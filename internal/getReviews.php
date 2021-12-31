@@ -5,7 +5,7 @@
 	require_once("utils.php");
 
 	function getReviews($CourseUnit, $Year) {
-        $sql = "SELECT * FROM `CUR_Reviews` WHERE `CourseUnit` = '$CourseUnit' AND `Year` = '$Year' AND `Status` = 'approved'";
+        $sql = "SELECT * FROM `CUR_Reviews` WHERE `CourseUnit` = '$CourseUnit' AND `Year` = '$Year' AND `Status` = 'approved' ORDER BY `Timestamp` DESC";
 		$res = doSQL($sql);
 
 		if ($res[0]) {

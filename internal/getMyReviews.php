@@ -5,7 +5,7 @@
 	require_once("utils.php");
 
 	function getMyReviews($Username) {
-        $sql = "SELECT * FROM `CUR_Reviews` WHERE `ReviewerUsername` = '$Username'";
+        $sql = "SELECT * FROM `CUR_Reviews` WHERE `ReviewerUsername` = '$Username' ORDER BY `Timestamp` DESC";
 		$res = doSQL($sql);
 
 		if ($res[0]) {

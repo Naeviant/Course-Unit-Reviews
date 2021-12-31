@@ -5,7 +5,7 @@
 	require_once("utils.php");
 
 	function getYears() {
-        $sql = "SELECT DISTINCT `Year` FROM `CUR_CourseUnits`";
+        $sql = "SELECT DISTINCT `Year` FROM `CUR_CourseUnits` ORDER BY `Year` DESC";
 		$res = doSQL($sql);
 
 		if ($res[0]) {
