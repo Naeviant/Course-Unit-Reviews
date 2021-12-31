@@ -11,7 +11,14 @@
     }
 ?>
 
-<h1>Submit Course Unit Review</h1>
+<div class="container">
+    <div class="card">
+        <div class="card-body"> 
+            <h1 class="text-center">Submit New Review</h1>
+        </div>
+    </div>
+</div>
+
 <?php
     if (!empty($_GET["reviewer_username"])) {
         // Temporary API
@@ -42,27 +49,47 @@
         include_once("internal/getYears.php");
         include_once("internal/getCourseUnitCodes.php");
         echo('
-            <form action="" method="get">
-                <label for="course_unit">Course Unit:</label>
-                <select class="form-select" name="course_unit">
-                    <option></option>
+            <div class="container">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="row" action="" method="get">
+                            <div class="col-5">
+                                <label for="course_unit">Course Unit:</label>
+                                <select class="form-select" name="course_unit">
         ');
         foreach (getCourseUnitCodes()[1] as $code) {
-            echo("<option>$code[Code]</option>");
-        }
-        echo(' 
-                </select>
-                <label for="year">Year Taken:</label>
-                <select class="form-select" name="year">
-                    <option></option>
-        ');
-        foreach (getYears()[1] as $year) {
-            echo("<option>$year[Year]</option>");
+            if (!empty($_GET["course_unit"]) && $_GET["course_unit"] == $code["Code"]) {
+                echo("<option selected>$code[Code]</option>");
+            }
+            else {
+                echo("<option>$code[Code]</option>");
+            }
         }
         echo('
-                </select>
-                <button type="submit">Continue</button>
-            </form>
+                                </select>
+                            </div>
+                            <div class="col-5">
+                                <label for="year">Year Taken:</label>
+                                <select class="form-select" name="year">
+        ');
+        foreach (getYears()[1] as $year) {
+            if (!empty($_GET["year"]) && $_GET["year"] == $year["Year"]) {
+                echo("<option selected>$year[Year]</option>");
+            }
+            else {
+                echo("<option>$year[Year]</option>");
+            }
+        }
+        echo('
+                                </select>
+                            </div>
+                            <div class="col-2">
+                                <button class="btn btn-primary btn-search" type="submit">Continue</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         ');
     }
     else {
@@ -74,108 +101,189 @@
             echo('<form action="" method="get">');
             if ($data["ExamPercentage"] > 0) {
                 echo('
-                    <label>Exam Rating</label><br />
-                    <div>
-                        <input type="radio" id="exam-rating-1" name="exam_rating" value="1" />
-                        <label for="exam-rating-1" class="star-rating"><i class="bi bi-star-fill"></i></label>
-                        <input type="radio" id="exam-rating-2" name="exam_rating" value="2" />
-                        <label for="exam-rating-2" class="star-rating"><i class="bi bi-star-fill"></i></label>
-                        <input type="radio" id="exam-rating-3" name="exam_rating" value="3" checked />
-                        <label for="exam-rating-3" class="star-rating"><i class="bi bi-star-fill"></i></label>
-                        <input type="radio" id="exam-rating-4" name="exam_rating" value="4" />
-                        <label for="exam-rating-4" class="star-rating"><i class="bi bi-star-fill"></i></label>
-                        <input type="radio" id="exam-rating-5" name="exam_rating" value="5" />
-                        <label for="exam-rating-5" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                    <div class="container">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Exam Rating:</label>
+                                    <div class="col-sm-10">
+                                        <input type="radio" id="exam-rating-1" name="exam_rating" value="1" />
+                                        <label for="exam-rating-1" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                                        <input type="radio" id="exam-rating-2" name="exam_rating" value="2" />
+                                        <label for="exam-rating-2" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                                        <input type="radio" id="exam-rating-3" name="exam_rating" value="3" checked />
+                                        <label for="exam-rating-3" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                                        <input type="radio" id="exam-rating-4" name="exam_rating" value="4" />
+                                        <label for="exam-rating-4" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                                        <input type="radio" id="exam-rating-5" name="exam_rating" value="5" />
+                                        <label for="exam-rating-5" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="exam_review" class="col-sm-2 col-form-label">Exam Review:</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" name="exam_review"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <label for="exam_review" class="form-label">Exam Review:</label>
-                    <textarea class="form-control" name="exam_review" rows="3"></textarea>
                 ');
             }
             if ($data["CourseworkPercentage"] > 0) {
                 echo('
-                    <label>Coursework Rating</label><br />
-                    <div>
-                        <input type="radio" id="coursework-rating-1" name="coursework_rating" value="1" />
-                        <label for="coursework-rating-1" class="star-rating"><i class="bi bi-star-fill"></i></label>
-                        <input type="radio" id="coursework-rating-2" name="coursework_rating" value="2" />
-                        <label for="coursework-rating-2" class="star-rating"><i class="bi bi-star-fill"></i></label>
-                        <input type="radio" id="coursework-rating-3" name="coursework_rating" value="3" checked />
-                        <label for="coursework-rating-3" class="star-rating"><i class="bi bi-star-fill"></i></label>
-                        <input type="radio" id="coursework-rating-4" name="coursework_rating" value="4" />
-                        <label for="coursework-rating-4" class="star-rating"><i class="bi bi-star-fill"></i></label>
-                        <input type="radio" id="coursework-rating-5" name="coursework_rating" value="5" />
-                        <label for="coursework-rating-5" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                    <div class="container">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Coursework Rating:</label>
+                                    <div class="col-sm-10">
+                                        <input type="radio" id="coursework-rating-1" name="coursework_rating" value="1" />
+                                        <label for="coursework-rating-1" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                                        <input type="radio" id="coursework-rating-2" name="coursework_rating" value="2" />
+                                        <label for="coursework-rating-2" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                                        <input type="radio" id="coursework-rating-3" name="coursework_rating" value="3" checked />
+                                        <label for="coursework-rating-3" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                                        <input type="radio" id="coursework-rating-4" name="coursework_rating" value="4" />
+                                        <label for="coursework-rating-4" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                                        <input type="radio" id="coursework-rating-5" name="coursework_rating" value="5" />
+                                        <label for="coursework-rating-5" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="coursework_review" class="col-sm-2 col-form-label">Coursework Review:</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" name="coursework_review"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <label for="coursework_review" class="form-label">Coursework Review:</label>
-                    <textarea class="form-control" name="coursework_review" rows="3"></textarea>               
                 ');
             }
             if ($data["LectureHours"] > 0) {
                 echo('
-                    <label>Lecture Rating</label><br />
-                    <div>
-                        <input type="radio" id="lecture-rating-1" name="lecture_rating" value="1" />
-                        <label for="lecture-rating-1" class="star-rating"><i class="bi bi-star-fill"></i></label>
-                        <input type="radio" id="lecture-rating-2" name="lecture_rating" value="2" />
-                        <label for="lecture-rating-2" class="star-rating"><i class="bi bi-star-fill"></i></label>
-                        <input type="radio" id="lecture-rating-3" name="lecture_rating" value="3" checked />
-                        <label for="lecture-rating-3" class="star-rating"><i class="bi bi-star-fill"></i></label>
-                        <input type="radio" id="lecture-rating-4" name="lecture_rating" value="4" />
-                        <label for="lecture-rating-4" class="star-rating"><i class="bi bi-star-fill"></i></label>
-                        <input type="radio" id="lecture-rating-5" name="lecture_rating" value="5" />
-                        <label for="lecture-rating-5" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                    <div class="container">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Lecture Rating:</label>
+                                    <div class="col-sm-10">
+                                        <input type="radio" id="lecture-rating-1" name="lecture_rating" value="1" />
+                                        <label for="lecture-rating-1" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                                        <input type="radio" id="lecture-rating-2" name="lecture_rating" value="2" />
+                                        <label for="lecture-rating-2" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                                        <input type="radio" id="lecture-rating-3" name="lecture_rating" value="3" checked />
+                                        <label for="lecture-rating-3" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                                        <input type="radio" id="lecture-rating-4" name="lecture_rating" value="4" />
+                                        <label for="lecture-rating-4" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                                        <input type="radio" id="lecture-rating-5" name="lecture_rating" value="5" />
+                                        <label for="lecture-rating-5" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="lecture_review" class="col-sm-2 col-form-label">Lecture Review:</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" name="lecture_review"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <label for="lecture_review" class="form-label">Lecture Review:</label>
-                    <textarea class="form-control" name="lecture_review" rows="3"></textarea>
                 ');
             }
             if ($data["WorkshopHours"] > 0) {
                 echo('
-                    <label>Workshop Rating</label><br />
-                    <div>
-                        <input type="radio" id="workshop-rating-1" name="workshop_rating" value="1" />
-                        <label for="workshop-rating-1" class="star-rating"><i class="bi bi-star-fill"></i></label>
-                        <input type="radio" id="workshop-rating-2" name="workshop_rating" value="2" />
-                        <label for="workshop-rating-2" class="star-rating"><i class="bi bi-star-fill"></i></label>
-                        <input type="radio" id="workshop-rating-3" name="workshop_rating" value="3" checked />
-                        <label for="workshop-rating-3" class="star-rating"><i class="bi bi-star-fill"></i></label>
-                        <input type="radio" id="workshop-rating-4" name="workshop_rating" value="4" />
-                        <label for="workshop-rating-4" class="star-rating"><i class="bi bi-star-fill"></i></label>
-                        <input type="radio" id="workshop-rating-5" name="workshop_rating" value="5" />
-                        <label for="workshop-rating-5" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                    <div class="container">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Workshops Rating:</label>
+                                    <div class="col-sm-10">
+                                        <input type="radio" id="workshop-rating-1" name="workshop_rating" value="1" />
+                                        <label for="workshop-rating-1" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                                        <input type="radio" id="workshop-rating-2" name="workshop_rating" value="2" />
+                                        <label for="workshop-rating-2" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                                        <input type="radio" id="workshop-rating-3" name="workshop_rating" value="3" checked />
+                                        <label for="workshop-rating-3" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                                        <input type="radio" id="workshop-rating-4" name="workshop_rating" value="4" />
+                                        <label for="workshop-rating-4" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                                        <input type="radio" id="workshop-rating-5" name="workshop_rating" value="5" />
+                                        <label for="workshop-rating-5" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="workshop_review" class="col-sm-2 col-form-label">Workshops Review:</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" name="workshop_review"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <label for="workshop_review" class="form-label">Workshops Review:</label>
-                    <textarea class="form-control" name="workshop_review" rows="3"></textarea>               
                 ');
             }
             if ($data["TutorialHours"] > 0) {
                 echo('
-                    <label>Tutorial Rating</label><br />
-                    <div>
-                        <input type="radio" id="tutorial-rating-1" name="tutorial_rating" value="1" />
-                        <label for="tutorial-rating-1" class="star-rating"><i class="bi bi-star-fill"></i></label>
-                        <input type="radio" id="tutorial-rating-2" name="tutorial_rating" value="2" />
-                        <label for="tutorial-rating-2" class="star-rating"><i class="bi bi-star-fill"></i></label>
-                        <input type="radio" id="tutorial-rating-3" name="tutorial_rating" value="3" checked />
-                        <label for="tutorial-rating-3" class="star-rating"><i class="bi bi-star-fill"></i></label>
-                        <input type="radio" id="tutorial-rating-4" name="tutorial_rating" value="4" />
-                        <label for="tutorial-rating-4" class="star-rating"><i class="bi bi-star-fill"></i></label>
-                        <input type="radio" id="tutorial-rating-5" name="tutorial_rating" value="5" />
-                        <label for="tutorial-rating-5" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                    <div class="container">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Tutorial Rating:</label>
+                                    <div class="col-sm-10">
+                                        <input type="radio" id="tutorial-rating-1" name="tutorial_rating" value="1" />
+                                        <label for="tutorial-rating-1" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                                        <input type="radio" id="tutorial-rating-2" name="tutorial_rating" value="2" />
+                                        <label for="tutorial-rating-2" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                                        <input type="radio" id="tutorial-rating-3" name="tutorial_rating" value="3" checked />
+                                        <label for="tutorial-rating-3" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                                        <input type="radio" id="tutorial-rating-4" name="tutorial_rating" value="4" />
+                                        <label for="tutorial-rating-4" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                                        <input type="radio" id="tutorial-rating-5" name="tutorial_rating" value="5" />
+                                        <label for="tutorial-rating-5" class="star-rating"><i class="bi bi-star-fill"></i></label>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="tutorial_review" class="col-sm-2 col-form-label">Tutorial Review:</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" name="tutorial_review"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <label for="tutorial_review" class="form-label">Tutorial Review:</label>
-                    <textarea class="form-control" name="tutorial_review" rows="3"></textarea>
                 ');
             }
             echo('
-                <label for="other_comments" class="form-label">Other Comments:</label>
-                <textarea class="form-control" name="other_comments" rows="3"></textarea>
+                <div class="container">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <label for="other_comments"  class="col-sm-2 col-form-label">Other Comments:</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" name="other_comments"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             ');
             echo("  <input name='reviewer_username' value='$_SESSION[username]' style='display: none;'>");
             echo("  <input name='course_unit' value='$_GET[course_unit]' style='display: none;'>");
             echo("  <input name='year' value='$_GET[year]' style='display: none;'>");
-            echo('  <button type="submit">Submit Review</button>');
+            echo('
+                <div class="container">
+                    <div class="card">
+                        <div class="card-body row justify-content-md-center">
+                            <div class="col-md-auto">
+                                <button type="submit" class="btn btn-primary">Submit Review</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ');
             echo('</form>');
+            echo('<br />');
         }
         else {
             

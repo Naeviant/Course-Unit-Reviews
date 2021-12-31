@@ -44,52 +44,77 @@
     }
 ?>
 
-<h1>Ban/Unban User</h1>
-<form method="post">
-    <label for="username">Username: </label>
-    <input type="text" name="username">
-    <button type="submit" name="ban" value="ban" class="btn btn-danger">Ban User</button>
-    <button type="submit" name="unban" value="unban" class="btn btn-success">Unban User</button>
-</form>
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="text-center">Admin Panel</h1>
+        </div>
+    </div>
+    <br />
+    <div class="card">
+        <div class="card-body">
+            <h3 class="text-center">Ban/Unban User</h3>
+            <form method="post" class="row">
+                <div class="col-8 d-grid gap-2">
+                    <input type="text" name="username" placeholder="Username">
+                </div>
+                <div class="col-2 d-grid gap-2">
+                    <button type="submit" name="ban" value="ban" class="btn btn-danger">Ban User</button>
+                </div>
+                <div class="col-2 d-grid gap-2">
+                    <button type="submit" name="unban" value="unban" class="btn btn-success">Unban User</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br />
+    <div class="card">
+        <div class="card-body">
+            <?php 
+                include_once("internal/getPendingReviews.php");
+                $res = getPendingReviews()[1];
+            ?>
+            
+            <h3 class="text-center">Approve/Reject Pending Reviews</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Course Unit</th>
+                        <th>Year</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        if (count($res)) {
+                            foreach ($res as $review) {
+                                echo("
+                                    <tr>
+                                        <td>$review[CourseUnit]</td>
+                                        <td>$review[Year]</td>
+                                        <td>
+                                            <form method='POST'>
+                                                <a class='btn btn-primary' href='view_review?id=$review[ID]' target='_blank'>Read Review</a>
+                                                <button class='btn btn-success' type='submit' name='approve' value='$review[ID]' target='_blank'>Approve</button>
+                                                <button class='btn btn-danger' type='submit' name='reject' value='$review[ID]' target='_blank'>Reject</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                ");
+                            }
+                        }
+                        else {
+                            echo("
+                                <td colspan='3'><em>No reviews found.</em></td>
+                            ");
+                        }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-<?php 
-    include_once("internal/getPendingReviews.php");
-    $res = getPendingReviews()[1];
-?>
 
-<h1>Approve/Reject Pending Reviews</h1>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Course Unit</th>
-            <th>Year</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-            if (count($res)) {
-                foreach ($res as $review) {
-                    echo("
-                        <td>$review[CourseUnit]</td>
-                        <td>$review[Year]</td>
-                        <td>
-                            <form method='POST'>
-                                <a class='btn btn-primary' href='view_review?id=$review[ID]' target='_blank'>Read Review</a>
-                                <button class='btn btn-success' type='submit' name='approve' value='$review[ID]' target='_blank'>Approve</button>
-                                <button class='btn btn-danger' type='submit' name='reject' value='$review[ID]' target='_blank'>Reject</button>
-                            </form>
-                        </td>
-                    ");
-                }
-            }
-            else {
-                echo("
-                    <td colspan='3'><em>No reviews found.</em></td>
-                ");
-            }
-        ?>
-    </tbody>
-</table>
 
 <?php include_once("components/footer.php") ?>
